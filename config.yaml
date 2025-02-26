@@ -1,4 +1,4 @@
-port: "5344"
+port: 5344
 services:
   webdav:
     root_dir: "./davroot"
