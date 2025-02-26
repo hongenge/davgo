@@ -1,2 +1,4 @@
-davgo.exe
+*.exe
 davgo
+*.tar.gz
+*.zip
