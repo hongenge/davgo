@@ -19,7 +19,7 @@
 
 创建一个 `config.yaml` 文件，示例内容如下：
 ```yaml
-port: "5344"
+port: 5344
 services:
   dav1:
     root_dir: "./davroot1"
