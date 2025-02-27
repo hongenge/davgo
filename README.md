@@ -13,7 +13,7 @@
 
 ####  1. 下载
 
-[首先从发布](https://github.com/hongenge/davgo/releases)页面下载适合您的操作系统和架构的最新程序。
+首先从[发布页面](https://github.com/hongenge/davgo/releases)下载适合您的操作系统和架构的最新程序。
 
 #### 2. 配置 `config.yaml`
 
