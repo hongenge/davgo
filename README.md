@@ -11,7 +11,12 @@
 
 ### 使用方法
 
-#### 1. 配置 `config.yaml`
+####  1. 下载
+
+[首先从发布](https://github.com/hongenge/davgo/releases)页面下载适合您的操作系统和架构的最新程序。
+
+#### 2. 配置 `config.yaml`
+
 创建一个 `config.yaml` 文件，示例内容如下：
 ```yaml
 port: "5344"
@@ -33,13 +38,13 @@ services:
 - `username` 和 `password`：基本认证凭据。
 - `mode`：`readonly` 或 `readwrite`，控制读写权限。
 
-#### 2. 运行服务器
+#### 3. 运行服务器
 ```bash
 ./davgo
 ```
 服务器将在指定端口（默认 `5344`）启动。
 
-#### 3. 可以用来挂载`WebDav`的软件
+#### 4. 可以用来挂载`WebDav`的软件
 
 `Potplayer`，`kmplayer`，`RaiDrive`，`kodi`，`Nplayer`，ES文件管理器，nova魔改
 
