@@ -48,3 +48,23 @@ services:
 
 `Potplayer`，`kmplayer`，`RaiDrive`，`kodi`，`Nplayer`，ES文件管理器，nova魔改
 
+### 反向代理
+
+`nginx`反向代理配置
+
+
+```nginx
+location / {
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  proxy_set_header Host $http_host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header Range $http_range;
+  proxy_set_header If-Range $http_if_range;
+  proxy_redirect off;
+  proxy_pass http://127.0.0.1:5344;
+  # the max size of file to upload
+  client_max_body_size 20000m;
+}
+```
+
