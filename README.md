@@ -53,13 +53,8 @@ services:
 
 * 每个 `services` 项的 `name` 字段决定访问路径。
 * 例如：
-
   * 第一个服务 `webdav` 可以通过 `http://服务器IP:5344/webdav/` 访问。
   * 第二个服务 `mydav` 可以通过 `http://服务器IP:5344/mydav/` 访问。
-* 客户端挂载示例：
-
-  * Windows 或 macOS：输入 `\\服务器IP@5344\webdav` 挂载。
-  * RaiDrive 或 ES 文件管理器：URL 填 `http://服务器IP:5344/webdav/`。
 * 每个实例都有独立的用户名和密码，需要按照 `username` 和 `password` 进行认证。
 
 #### 3. 运行服务器
