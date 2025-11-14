@@ -12,6 +12,7 @@ import (
 
 // WebDAVConfig 定义单个 WebDAV 服务的配置
 type WebDAVConfig struct {
+	Name     string `yaml:"name"`
 	RootDir  string `yaml:"root_dir"`
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
@@ -20,8 +21,8 @@ type WebDAVConfig struct {
 
 // Config 定义整个配置文件结构
 type Config struct {
-	Port     string                  `yaml:"port"`
-	Services map[string]WebDAVConfig `yaml:"services"`
+	Port     string         `yaml:"port"`
+	Services []WebDAVConfig `yaml:"services"`
 }
 
 func loadConfig(filename string) (*Config, error) {
@@ -75,8 +76,10 @@ func main() {
 	// 设置 HTTP 服务器
 	mux := http.NewServeMux()
 
-	// 动态注册每个 WebDAV 服务
-	for name, cfg := range config.Services {
+	// 动态注册每个 WebDAV 服务（list 版本）
+	for _, cfg := range config.Services {
+		name := cfg.Name
+
 		// 检查 root_dir 是否存在
 		if _, err := os.Stat(cfg.RootDir); os.IsNotExist(err) {
 			log.Printf("Warning: Root directory %s for %s does not exist, creating it...", cfg.RootDir, name)
@@ -100,14 +103,14 @@ func main() {
 			},
 		}
 
-		// 判断是否为只读模式
+		// 是否只读
 		isReadOnly := cfg.Mode == "readonly"
 
-		// 应用中间件：先认证，再检查只读模式
+		// 包装认证与只读中间件
 		authHandler := withBasicAuth(handler, cfg.Username, cfg.Password)
 		finalHandler := readOnlyMiddleware(authHandler, isReadOnly)
 
-		// 注册到 mux
+		// 注册 WebDAV 路由
 		mux.Handle(prefix, finalHandler)
 		log.Printf("Registered WebDAV service at %s with root %s (mode: %s)", prefix, cfg.RootDir, cfg.Mode)
 	}

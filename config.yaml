@@ -1,11 +1,12 @@
 port: 5344
 services:
-  webdav:
+  - name: webdav
     root_dir: "./davroot"
     username: "abc"
     password: "123"
     mode: "readwrite"
-  mydav:
+
+  - name: mydav
     root_dir: "./davroot"
     username: "abc"
     password: "123"
